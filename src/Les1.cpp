@@ -26,28 +26,28 @@ private:
 	double exp;
 		
 public:
-	Power(): basis(1.0), exp(1.0){}
-	Power(double a, double b): basis(a), exp(b){}
+	Power(double a = 2.0, double b = 2.0): basis(a), exp(b){}
 	~Power(){}
 	
-	void set(double a, double b): basis(a), exp(b){
-		
+	void set(double a, double b){
+		basis = a;
+		exp = b;
 	}
 	
 	double calculate(){
 		return pow(basis,exp);
 	}
-}
+};
 
 void les1_1(){
 	
-	Power powr(2.0,2.0);
+	Power powr;
 	
-	printf(" %f\n", powr.calculate());
+	printf(" %3.3f\n", powr.calculate());
 	
 	powr.set( powr.calculate(), 2);
 	
-	printf(" %f\n", powr.calculate());
+	printf(" %3.3f\n", powr.calculate());
 	
 }
 
@@ -68,14 +68,23 @@ private:
 	uint8_t m_alpha;
 	
 public:
-	RGBA(uint8_t a = 0 ,uint8_t b = 0 ,uint8_t c = 0 ,uint8_t d = 255): m_red(0), m_green(0), m_blue(0), m_alpha(255){
+	RGBA(uint8_t red = 0 ,uint8_t green = 0 ,uint8_t blue = 0 ,uint8_t alpha = 255): m_red(red), m_green(green), m_blue(blue), m_alpha(alpha){
 		
 	}
+	~RGBA(){}
 	
+	print(){
+		printf(" color is #%02x%02x%02x%02x\n", m_red, m_green, m_blue, m_alpha);
+	}
 	
+};
+
+void les1_2(){
+	RGBA color;
+	
+	color.print();
 	
 }
-
 
 //---------------------------------------------------------------
 /*	3
@@ -83,15 +92,93 @@ public:
 	-private-массив целых чисел длиной 10;
 	- private целочисленное значение для отслеживания длины стека;
 	- public-метод с именем reset(), который будет сбрасывать длину и все значения элементов на 0;
-	- public-метод с именем push(), который будет добавлять значение в стек. push() должен возвращать значение false, если массив уже заполнен, и true в противном случае;
+	- public-метод с именем push(), который будет добавлять значение в стек. 
+		push() должен возвращать значение false, если массив уже заполнен, и true в противном случае;
 	- public-метод с именем pop() для вытягивания и возврата значения из стека. Если в стеке нет значений, то должно выводиться предупреждение;
 	- public-метод с именем print(), который будет выводить все значения стека.
 */
 //---------------------------------------------------------------
 
+#define SZ 10
+
+class Stack{
+private:
+	int arr[SZ];
+	int len;
+	
+public:
+	Stack(): len(-1){}
+	~Stack(){}
+	
+	void reset(){
+		for(int i = 0; i < SZ; i++){
+			arr[i] = 0;
+		}
+		len = -1;
+	}
+	
+	bool push(int dat){
+		if (len == SZ-1)
+			return false;
+		else{
+			len++;
+			arr[len] = dat;
+			return true;
+		}
+	}
+	
+	int pop(){
+		if (len >= 0 ){
+			int tmp = arr[len];
+			len--;
+			return tmp;
+		} else{
+			printf(" Stack is empty\n");
+		}
+	}
+	
+	void print(){
+		if(len > 0){
+			for (int i = len; i >= 0; i--)
+				printf(" %d", arr[i]);
+			printf("\n");
+		} else{
+			printf(" Stack is empty\n");
+		}
+	}
+};
+
+void les1_3(){
+	
+	Stack st;
+	
+	st.reset();
+	st.push(5);
+	st.push(2);
+	
+	st.print();
+	
+	st.push(6);
+	st.push(5);
+	st.push(3);
+	st.push(1);
+	st.push(9);
+	
+	st.print();
+	printf(" %d\n", st.pop());
+	st.print();
+	
+	
+}
+
+//---------------------------------------------------------------
 int main(int args, const char** argv){
 	
 	les1_1();
+	
+	les1_2();
+	
+	les1_3();
 	
 	return 0;
 } 
