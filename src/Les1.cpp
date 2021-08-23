@@ -139,7 +139,7 @@ public:
 	
 	void print(){
 		if(len > 0){
-			for (int i = len; i >= 0; i--)
+			for (int i = 0; i <= len; i++)
 				printf(" %d", arr[i]);
 			printf("\n");
 		} else{
@@ -155,7 +155,6 @@ void les1_3(){
 	st.reset();
 	st.push(5);
 	st.push(2);
-	
 	st.print();
 	
 	st.push(6);
@@ -163,8 +162,8 @@ void les1_3(){
 	st.push(3);
 	st.push(1);
 	st.push(9);
-	
 	st.print();
+	
 	printf(" %d\n", st.pop());
 	st.print();
 	
