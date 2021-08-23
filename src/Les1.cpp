@@ -138,7 +138,7 @@ public:
 	}
 	
 	void print(){
-		if(len > 0){
+		if(len >= 0){
 			for (int i = 0; i <= len; i++)
 				printf(" %d", arr[i]);
 			printf("\n");
@@ -151,13 +151,15 @@ public:
 void les1_3(){
 	
 	Stack st;
-	
 	st.reset();
+	
 	st.push(5);
-	st.push(2);
 	st.print();
 	
+	st.push(2);
 	st.push(6);
+	st.print();
+	
 	st.push(5);
 	st.push(3);
 	st.push(1);
