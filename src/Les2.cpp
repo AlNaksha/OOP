@@ -4,6 +4,7 @@
 //---------------------------------------------------------------
 /**/
 #include <iostream>
+#include <string>
 // #include "../sourse/OOP.h"
 
 using namespace std;
@@ -22,13 +23,13 @@ using namespace std;
 
 class Person{
 private:
-	string name("N");
+	string name;
 	int age;
 	bool gender;
 	int weight;	
 	
 public:
-	Person()
+	Person(): name("N"), age(-1), gender(true), weight(-1)
 	{
 		
 	}
